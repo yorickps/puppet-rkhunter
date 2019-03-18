@@ -27,7 +27,7 @@ class rkhunter  (
   $use_locking            = $rkhunter::params::use_locking,
   $lock_timeout           = $rkhunter::params::lock_timeout,
   $show_lockmsgs          = $rkhunter::params::show_lockmsgs,
-  $disable_unhide         = $rkhunter::params::disable_unhide,
+  Optional[Enum['0','1','2']] $disable_unhide = $rkhunter::params::disable_unhide,
   $installdir             = $rkhunter::params::installdir,
   $ssh_config_dir         = $rkhunter::params::ssh_config_dir,
   $hash_cmd               = $rkhunter::params::hash_cmd,

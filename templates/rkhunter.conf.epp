@@ -1378,6 +1378,7 @@ UNHIDE_TESTS=<%= $rkhunter::unhide_tests %>
 UNHIDETCP_OPTS=<%= $rkhunter::unhidetcp_opts %>
 <% } -%>
 
+<% if $rkhunter::disable_unhide {-%>
 #
 # If both the C 'unhide', and Ruby 'unhide.rb', programs exist on the system,
 # then it is possible to disable the execution of one of the programs if
@@ -1392,6 +1393,7 @@ UNHIDETCP_OPTS=<%= $rkhunter::unhidetcp_opts %>
 #
 #DISABLE_UNHIDE=0
 DISABLE_UNHIDE=<%= $rkhunter::disable_unhide %>
+<% } -%>
 
 #
 # This option can be set to either '0' or '1'. If set to '1' then the summary,

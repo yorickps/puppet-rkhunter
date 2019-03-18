@@ -47,7 +47,7 @@ class rkhunter::params {
   $lock_timeout        = '300'
   $show_lockmsgs       = '1'
   $disable_unhide      = $::osfamily ? {
-    'RedHat' => '0',
+    'RedHat' => undef,
     default  => '1',
   }
   $installdir          = '/usr'
