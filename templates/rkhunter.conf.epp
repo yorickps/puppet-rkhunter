@@ -91,7 +91,7 @@
 # The default value is '1'.
 #
 #ROTATE_MIRRORS=1
-ROTATE_MIRRORS=<%= $rkhunter::rotate_mirrors %>
+ROTATE_MIRRORS=<%= $rkhunter::rotate_mirrors.bool2num %>
 
 #
 # If this option is set to '1', it specifies that when the '--update' option is
@@ -103,7 +103,7 @@ ROTATE_MIRRORS=<%= $rkhunter::rotate_mirrors %>
 # The default value is '1'.
 #
 #UPDATE_MIRRORS=1
-UPDATE_MIRRORS=<%= $rkhunter::update_mirrors %>
+UPDATE_MIRRORS=<%= $rkhunter::update_mirrors.bool2num %>
 
 #
 # The MIRRORS_MODE option tells rkhunter which mirrors are to be used when
@@ -248,7 +248,7 @@ LOGFILE=<%= $rkhunter::logfile %>
 # The default value is '0'.
 #
 #APPEND_LOG=0
-APPEND_LOG=<%= $rkhunter::append_log %>
+APPEND_LOG=<%= $rkhunter::append_log.bool2num %>
 
 #
 # Set the following option to '1' if the log file is to be copied when rkhunter
@@ -261,7 +261,7 @@ APPEND_LOG=<%= $rkhunter::append_log %>
 # The default value is '0'.
 #
 #COPY_LOG_ON_ERROR=0
-COPY_LOG_ON_ERROR=<%= $rkhunter::copy_log_on_error %>
+COPY_LOG_ON_ERROR=<%= $rkhunter::copy_log_on_error.bool2num %>
 
 #
 # Set the following option to enable the rkhunter check start and finish times
@@ -290,7 +290,7 @@ USE_SYSLOG=<%= $rkhunter::use_syslog %>
 # The default value is '0'.
 #
 #COLOR_SET2=0
-COLOR_SET2=<%= $rkhunter::color_set2 %>
+COLOR_SET2=<%= $rkhunter::color_set2.bool2num %>
 
 #
 # Set the following option to '0' if rkhunter should not detect if X is being
@@ -299,7 +299,7 @@ COLOR_SET2=<%= $rkhunter::color_set2 %>
 #
 # The default value is '0'.
 #
-AUTO_X_DETECT=<%= $rkhunter::auto_x_detect %>
+AUTO_X_DETECT=<%= $rkhunter::auto_x_detect.bool2num %>
 
 #
 # Set the following option to '1' if it is wanted that any 'Whitelisted' results
@@ -310,7 +310,7 @@ AUTO_X_DETECT=<%= $rkhunter::auto_x_detect %>
 # The default value is '0'.
 #
 #WHITELISTED_IS_WHITE=0
-WHITELISTED_IS_WHITE=<%= $rkhunter::whitelisted_is_white %>
+WHITELISTED_IS_WHITE=<%= $rkhunter::whitelisted_is_white.bool2num %>
 
 #
 # The following option is checked against the SSH configuration file
@@ -491,7 +491,7 @@ PKGMGR_NO_VRFY=<%= $pkgmgrnoverfy %>
 #
 #USE_SUNSUM=0
 <% if $rkhunter::use_sunsum {-%>
-USE_SUNSUM=<%= $rkhunter::use_sunsum %>
+USE_SUNSUM=<%= $rkhunter::use_sunsum.bool2num %>
 <% } -%>
 
 #
@@ -826,7 +826,7 @@ IPC_SEG_SIZE=<%= $rkhunter::ipc_seg_size %>
 # The default value is '0'.
 #
 #PHALANX2_DIRTEST=0
-PHALANX2_DIRTEST=<%= $rkhunter::phalanx2_dirtest %>
+PHALANX2_DIRTEST=<%= $rkhunter::phalanx2_dirtest.bool2num %>
 
 #
 # This option tells rkhunter where the inetd configuration file is located.
@@ -976,7 +976,7 @@ SYSLOG_CONFIG_FILE=<%= $file %>
 # The default value is '0'.
 #
 #ALLOW_SYSLOG_REMOTE_LOGGING=0
-ALLOW_SYSLOG_REMOTE_LOGGING=<%= $rkhunter::allow_syslog_remote_logging %>
+ALLOW_SYSLOG_REMOTE_LOGGING=<%= $rkhunter::allow_syslog_remote_logging.bool2num %>
 
 #
 # This option allows the specified applications, or a specific version of an
@@ -1300,7 +1300,7 @@ WEB_CMD=<%= $rkhunter::web_cmd %>
 # Also see the LOCK_TIMEOUT and SHOW_LOCK_MSGS options.
 #
 #USE_LOCKING=0
-USE_LOCKING=<%= $rkhunter::use_locking %>
+USE_LOCKING=<%= $rkhunter::use_locking.bool2num %>
 
 #
 # If locking is used, then rkhunter may have to wait to get the lock file.
@@ -1323,7 +1323,7 @@ LOCK_TIMEOUT=<%= $rkhunter::lock_timeout %>
 # The default value is '1'.
 #
 #SHOW_LOCK_MSGS=1
-SHOW_LOCK_MSGS=<%= $rkhunter::show_lockmsgs %>
+SHOW_LOCK_MSGS=<%= $rkhunter::show_lockmsgs.bool2num %>
 
 #
 # If this option is set to 'THOROUGH' then rkhunter will search (on a per
@@ -1407,7 +1407,7 @@ DISABLE_UNHIDE=<%= $rkhunter::disable_unhide %>
 #
 #SHOW_SUMMARY_WARNINGS_NUMBER=0
 <% if $rkhunter::show_summary_warnings_number {-%>
-SHOW_SUMMARY_WARNINGS_NUMBER=<%= $rkhunter::show_summary_warnings_number %>
+SHOW_SUMMARY_WARNINGS_NUMBER=<%= $rkhunter::show_summary_warnings_number.bool2num %>
 <% } -%>
 
 #

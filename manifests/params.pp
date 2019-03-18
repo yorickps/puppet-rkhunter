@@ -1,7 +1,7 @@
 class rkhunter::params {
 
-  $rotate_mirrors      = '1'
-  $update_mirrors      = '1'
+  $rotate_mirrors      = true
+  $update_mirrors      = true
   $mirrors_mode        = '0'
   $mail_on_warning     = ''
   $mail_cmd            = 'mail -s "[rkhunter] Warnings found for ${HOST_NAME}"'
@@ -17,20 +17,20 @@ class rkhunter::params {
     default  => '/var/log/rkhunter.log',
   }
   $append_log          = $::osfamily ? {
-    'RedHat' => '1',
-    default  => '0',
+    'RedHat' => true,
+    default  => false,
   }
-  $copy_log_on_error   = '0'
+  $copy_log_on_error   = false
   $use_syslog          = $::osfamily ? {
     'RedHat' => 'authpriv.notice',
     default  => undef,
   }
-  $color_set2          = '0'
+  $color_set2          = false
   $auto_x_detect       = $::osfamily ? {
-    'RedHat' => '1',
-    default  => '0',
+    'RedHat' => true,
+    default  => false,
   }
-  $whitelisted_is_white = '0'
+  $whitelisted_is_white = false
   $allow_ssh_root_user = $::osfamily ? {
     'RedHat' => 'unset',
     default  => 'no',
@@ -39,13 +39,13 @@ class rkhunter::params {
   $enable_tests        = 'all'
   $disable_tests       = 'suspscan hidden_procs deleted_files packet_cap_apps apps'
   $immutable_set       = '0'
-  $allow_syslog_remote_logging = '0'
+  $allow_syslog_remote_logging = false
   $suspscan_temp       = '/dev/shm'
   $suspscan_maxsize    = '10240000'
   $suspscan_thresh     = '200'
-  $use_locking         = '0'
+  $use_locking         = false
   $lock_timeout        = '300'
-  $show_lockmsgs       = '1'
+  $show_lockmsgs       = true
   $disable_unhide      = $::osfamily ? {
     'RedHat' => undef,
     default  => '1',
@@ -73,7 +73,7 @@ class rkhunter::params {
   $attrwhitelist       = []     #['/path/one /path/bar', '/path/foobar*']
   $writewhitelist      = []     #['/path/one /path/bar', '/path/foobar*']
   $scan_mode_dev       = undef  #"THOROUGH"
-  $phalanx2_dirtest    = '0'
+  $phalanx2_dirtest    = false
   $inetd_conf_path     = undef  #"/etc/inetd.conf"
   $inetd_allowed_svc   = []     #['echo']
   $xinetd_conf_path    = undef  #"/etc/xinetd.conf"
