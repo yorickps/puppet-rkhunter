@@ -9,7 +9,7 @@ class rkhunter::packages(
   file { '/usr/local/bin/rktask':
     ensure => file,
     mode   => '0755',
-    source => 'puppet:///modules/rkhunter/rktask'
+    source => 'puppet:///modules/rkhunter/rktask',
   }
 
   # Run rkhunter --propupd after installation of package
