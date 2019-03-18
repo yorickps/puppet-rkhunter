@@ -1,13 +1,13 @@
 require 'spec_helper'
 
-describe 'rkhunter::packages', :type => :class do
+describe 'rkhunter::packages', type: :class do
   on_supported_os.each do |os, facts|
     context "on #{os}" do
-      let(:facts){facts}
+      let(:facts) { facts }
 
       it do
-        should contain_package('rkhunter').with(
-          'ensure'  => 'installed',
+        is_expected.to contain_package('rkhunter').with(
+          'ensure' => 'installed'
         )
       end
     end
