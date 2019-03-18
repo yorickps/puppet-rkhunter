@@ -92,6 +92,6 @@ class rkhunter  (
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
-    content => template('rkhunter/etc/rkhunter.conf.erb');
+    content => epp('rkhunter/rkhunter.conf.epp');
   }
 }
