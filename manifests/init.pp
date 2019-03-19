@@ -83,10 +83,38 @@ class rkhunter  (
   $show_summary_time      = $rkhunter::params::show_summary_time,
   $empty_logfiles         = $rkhunter::params::empty_logfiles,
   $missing_logfiles       = $rkhunter::params::missing_logfiles,
-
-
+  Optional[Stdlib::HTTPUrl] $local_mirror = undef,
 ) inherits ::rkhunter::params {
   include ::rkhunter::packages
+
+  $mirrors_file = '/var/lib/rkhunter/db/mirrors.dat'
+
+  # Make sure mimimal mirrors.dat exists for file_line to function
+  file { $mirrors_file:
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0600',
+    content => "Version:1\n",
+    replace => false,
+    require => Class['rkhunter::packages'],
+  }
+  if $local_mirror {
+    file_line { 'Add local mirror to mirrors.dat':
+      ensure  => present,
+      path    => $mirrors_file,
+      line    => "local=${local_mirror}",
+      match   => '^local=',
+      require => File[$mirrors_file],
+    }
+  } else {
+    file_line { 'Remove local mirror from mirrors.dat':
+      ensure            => absent,
+      path              => $mirrors_file,
+      match             => '^local=',
+      match_for_absence => true,
+      require           => File[$mirrors_file],
+    }
+  }
 
   file { '/etc/rkhunter.conf':
     owner   => 'root',
