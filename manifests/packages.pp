@@ -14,7 +14,7 @@ class rkhunter::packages(
 
   # Run rkhunter --propupd after installation of package
   exec { '/usr/bin/rkhunter --propupd':
-    unless    => '/usr/bin/test -f /var/lib/rkhunter/db/rkhunter_prop_list.dat',
+    unless    => '/usr/bin/test -f /var/lib/rkhunter/db/rkhunter_prop_list.dat && /usr/bin/test -f /var/lib/rkhunter/db/rkhunter.dat',
     subscribe => Package['rkhunter'],
   }
 }
