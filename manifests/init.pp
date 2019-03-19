@@ -1,7 +1,7 @@
 class rkhunter  (
   Boolean $rotate_mirrors = $rkhunter::params::rotate_mirrors,
   Boolean $update_mirrors = $rkhunter::params::update_mirrors,
-  $mirrors_mode           = $rkhunter::params::mirrors_mode,
+  Optional[Enum['any','local','remote']] $mirrors_mode = $rkhunter::params::mirrors_mode,
   $mail_on_warning        = $rkhunter::params::mail_on_warning,
   $mail_cmd               = $rkhunter::params::mail_cmd,
   $tmpdir                 = $rkhunter::params::tmpdir,

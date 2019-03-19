@@ -2,7 +2,7 @@ class rkhunter::params {
 
   $rotate_mirrors      = true
   $update_mirrors      = true
-  $mirrors_mode        = '0'
+  $mirrors_mode        = undef
   $mail_on_warning     = ''
   $mail_cmd            = 'mail -s "[rkhunter] Warnings found for ${HOST_NAME}"'
   $tmpdir              = $::osfamily ? {

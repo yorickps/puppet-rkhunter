@@ -119,7 +119,16 @@ UPDATE_MIRRORS=<%= $rkhunter::update_mirrors.bool2num %>
 # The default value is '0'.
 #
 #MIRRORS_MODE=0
-MIRRORS_MODE=<%= $rkhunter::mirrors_mode %>
+<% if $rkhunter::mirrors_mode {-%>
+<%-
+$mode = $rkhunter::mirrors_mode ? {
+  'any'    => '0',
+  'local'  => '1',
+  'remote' => '2',
+}
+-%>
+MIRRORS_MODE=<%= $mode %>
+<% } -%>
 
 #
 # Email a message to this address if a warning is found when the system is
