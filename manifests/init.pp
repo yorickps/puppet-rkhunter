@@ -85,7 +85,7 @@ class rkhunter  (
   $missing_logfiles       = $rkhunter::params::missing_logfiles,
   Optional[Stdlib::HTTPUrl] $local_mirror = undef,
 ) inherits ::rkhunter::params {
-  include ::rkhunter::packages
+  include rkhunter::packages
 
   $mirrors_file = '/var/lib/rkhunter/db/mirrors.dat'
 
