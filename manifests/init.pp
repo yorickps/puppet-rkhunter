@@ -83,9 +83,11 @@ class rkhunter  (
   $show_summary_time      = $rkhunter::params::show_summary_time,
   $empty_logfiles         = $rkhunter::params::empty_logfiles,
   $missing_logfiles       = $rkhunter::params::missing_logfiles,
+  String[1] $package_name = 'rkhunter',
   Optional[Stdlib::HTTPUrl] $local_mirror = undef,
 ) inherits ::rkhunter::params {
-  include rkhunter::packages
+
+  contain rkhunter::packages
 
   $mirrors_file = '/var/lib/rkhunter/db/mirrors.dat'
 

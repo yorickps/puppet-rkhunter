@@ -281,21 +281,4 @@ class rkhunter::params {
   $shared_lib_whitelist = [
 #      '/lib/snoopy.so',
   ]
-
-
-
-  case $facts['os']['family'] {
-    'Debian': {
-      $package_name = 'rkhunter'
-    }
-    'RedHat': {
-      $package_name = 'rkhunter'
-    }
-    'FreeBSD': {
-      $package_name = 'security/rkhunter'
-    }
-    default: {
-      $package_name = 'rkhunter'
-    }
-  }
 }

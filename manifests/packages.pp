@@ -1,6 +1,16 @@
+#
+# @summary install the rkhunter package and initialize it
+#
+# @api private
+#
+# @param package_name name of the rkhunter package that will be installed
+#
 class rkhunter::packages(
-  $package_name = $rkhunter::params::package_name,
-) inherits ::rkhunter::params {
+  $package_name = $rkhunter::package_name,
+) {
+
+  assert_private()
+
   package { 'rkhunter':
     ensure => installed,
     name   => $package_name,
