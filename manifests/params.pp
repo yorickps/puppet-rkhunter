@@ -1,17 +1,9 @@
 class rkhunter::params {
 
-  $rotate_mirrors      = true
-  $update_mirrors      = true
-  $mirrors_mode        = undef
-  $mail_on_warning     = ''
-  $mail_cmd            = 'mail -s "[rkhunter] Warnings found for ${HOST_NAME}"'
   $tmpdir              = $facts['os']['family'] ? {
     'RedHat' => '/var/lib/rkhunter',
     default  => '/var/lib/rkhunter/tmp',
   }
-  $dbdir               = '/var/lib/rkhunter/db'
-  $scriptdir           = '/usr/share/rkhunter/scripts'
-  $bindir              = undef
   $logfile             = $facts['os']['family'] ? {
     'RedHat' => '/var/log/rkhunter/rkhunter.log',
     default  => '/var/log/rkhunter.log',
@@ -20,47 +12,26 @@ class rkhunter::params {
     'RedHat' => true,
     default  => false,
   }
-  $copy_log_on_error   = false
   $use_syslog          = $facts['os']['family'] ? {
     'RedHat' => 'authpriv.notice',
     default  => undef,
   }
-  $color_set2          = false
   $auto_x_detect       = $facts['os']['family'] ? {
     'RedHat' => true,
     default  => false,
   }
-  $whitelisted_is_white = false
   $allow_ssh_root_user = $facts['os']['family'] ? {
     'RedHat' => 'unset',
     default  => 'no',
   }
-  $allow_ssh_prot_v1   = '0'
-  $enable_tests        = 'all'
-  $disable_tests       = 'suspscan hidden_procs deleted_files packet_cap_apps apps'
-  $immutable_set       = '0'
-  $allow_syslog_remote_logging = false
-  $suspscan_temp       = '/dev/shm'
-  $suspscan_maxsize    = '10240000'
-  $suspscan_thresh     = '200'
-  $use_locking         = false
-  $lock_timeout        = '300'
-  $show_lockmsgs       = true
   $disable_unhide      = $facts['os']['family'] ? {
     'RedHat' => undef,
     default  => '1',
   }
-  $installdir          = '/usr'
-  $ssh_config_dir      = undef  #"/etc/ssh"
-  $hash_cmd            = undef  #"sha1sum"
-  $hash_fld_idx        = undef  #"4"
   $package_manager     = $facts['os']['family'] ? {
     'RedHat' => 'RPM',
     default  => undef,  #"NONE"
   }
-  $pkgmgr_no_verfy     = []     #['/etc/fooconfig1 /etc/barconfig2', '/etc/foobarconfig']
-  $ignore_prelink_dep_err = []  #['/bin/ps /usr/bin/top', '/bin/foobin']
-  $use_sunsum          = undef  #"0"
   $existwhitelist      = $facts['os']['family'] ? {
     'RedHat' => [
       '/var/log/pki-ca/system',
@@ -70,39 +41,13 @@ class rkhunter::params {
     ],
     default  => [],             #['/path/one /path/bar', '/path/foobar*']
   }
-  $attrwhitelist       = []     #['/path/one /path/bar', '/path/foobar*']
-  $writewhitelist      = []     #['/path/one /path/bar', '/path/foobar*']
-  $scan_mode_dev       = undef  #"THOROUGH"
-  $phalanx2_dirtest    = false
-  $inetd_conf_path     = undef  #"/etc/inetd.conf"
-  $inetd_allowed_svc   = []     #['echo']
-  $xinetd_conf_path    = undef  #"/etc/xinetd.conf"
-  $xinetd_allowed_svc  = []     #['echo'
-  $startup_paths       = []     #['/etc/init.d /etc/rc.local']
-  $passwd_file         = undef  #"/etc/shadow"
-  $user_fileprop_files_dirs = [] #['top /usr/local/sbin !/opt/ps*', '/etc/rkhunter.conf']
-  $rtkt_file_whitelist = $facts['os']['family'] ? {
+    $rtkt_file_whitelist = $facts['os']['family'] ? {
     'RedHat' => [
       '/var/log/pki-ca/system',            # FreeIPA Certificate Authority
       '/var/log/pki/pki-tomcat/ca/system',
     ],
     default  => [],
   }
-  $rtkt_dir_whitelist  = []
-  $os_version_file     = undef  #"/etc/debian_version"
-  $stat_cmd            = undef  #"BUILTIN"
-  $readlink_cmd        = undef  #"BUILTIN"
-  $web_cmd             = undef  #
-  $warn_on_os_change   = undef  #"1"
-  $updt_on_os_change   = undef  #"0"
-  $scanrootkitmode     = undef  #"TROUGH"
-  $unhide_tests        = undef  #"sys"
-  $unhidetcp_opts      = undef
-
-  $show_summary_warnings_number = undef
-  $show_summary_time   = undef
-  $empty_logfiles      = undef
-  $missing_logfiles    = undef
 
   $scriptwhitelist     = $facts['os']['family'] ? {
     'RedHat' => [
@@ -124,7 +69,6 @@ class rkhunter::params {
       '/usr/sbin/prelink',
     ],
   }
-  $immutewhitelist = []
   $allowhiddendir = $facts['os']['family'] ? {
     'RedHat' => [
       '/etc/.java',
@@ -207,21 +151,6 @@ class rkhunter::params {
 #      '/etc/.bzrignore',
     ],
   }
-  $allowprocdelfile = [
-#      '/sbin/cardmgr /usr/sbin/gpm:/etc/X11/abc',
-#      '/usr/lib/libgconf2-4/gconfd-2',
-#      '/usr/sbin/mysqld:/tmp/ib*',
-#      '/usr/lib/iceweasel/firefox-bin',
-#      '/usr/bin/file-roller',
-  ]
-  $allowproclisten = [
-#      '/sbin/dhclient /usr/bin/dhcpcd',
-#      '/usr/sbin/pppoe /usr/sbin/tcpdump',
-#      '/usr/sbin/snort-plain',
-  ]
-  $allowpromiscif = [
-#      'eth0',
-  ]
   $allowdevfile = $facts['os']['family'] ? {
     'RedHat' => [
       '/dev/shm/pulse-shm-*',
@@ -255,30 +184,4 @@ class rkhunter::params {
 #      '/dev/shm/sem.ADBE_*',
     ],
   }
-  $allowipcproc = []
-  $allowipcpid  = []
-  $allowipcuser = []
-  $ipc_seg_size = undef
-  $uid0_accounts = [
-#      'toor rooty sashroot',
-  ]
-  $pwdless_accounts = [
-#      'someuser',
-  ]
-  $syslog_config_file = [
-#      '/etc/syslog.conf',
-  ]
-  $app_whitelist = [
-#      'openssl:0.9.7d gpg httpd:1.3.29',
-  ]
-  $suspscan_dirs = [
-#      '/tmp /var/tmp',
-  ]
-  $port_whitelist = [
-#      '/home/user1/abc /opt/xyz TCP:2001 UDP:32011',
-  ]
-  $port_path_whitelist = []
-  $shared_lib_whitelist = [
-#      '/lib/snoopy.so',
-  ]
 }
