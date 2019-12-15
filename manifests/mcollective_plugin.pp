@@ -1,6 +1,6 @@
 class rkhunter::mcollective_plugin {
 
-  $mcollecgtive_plugindir = $::osfamily ? {
+  $mcollecgtive_plugindir = $facts['os']['family'] ? {
     'Debian' => '/usr/share/mcollective/plugins',
     default  => '/usr/libexec/mcollective',
   }

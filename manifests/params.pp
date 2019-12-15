@@ -5,33 +5,33 @@ class rkhunter::params {
   $mirrors_mode        = undef
   $mail_on_warning     = ''
   $mail_cmd            = 'mail -s "[rkhunter] Warnings found for ${HOST_NAME}"'
-  $tmpdir              = $::osfamily ? {
+  $tmpdir              = $facts['os']['family'] ? {
     'RedHat' => '/var/lib/rkhunter',
     default  => '/var/lib/rkhunter/tmp',
   }
   $dbdir               = '/var/lib/rkhunter/db'
   $scriptdir           = '/usr/share/rkhunter/scripts'
   $bindir              = undef
-  $logfile             = $::osfamily ? {
+  $logfile             = $facts['os']['family'] ? {
     'RedHat' => '/var/log/rkhunter/rkhunter.log',
     default  => '/var/log/rkhunter.log',
   }
-  $append_log          = $::osfamily ? {
+  $append_log          = $facts['os']['family'] ? {
     'RedHat' => true,
     default  => false,
   }
   $copy_log_on_error   = false
-  $use_syslog          = $::osfamily ? {
+  $use_syslog          = $facts['os']['family'] ? {
     'RedHat' => 'authpriv.notice',
     default  => undef,
   }
   $color_set2          = false
-  $auto_x_detect       = $::osfamily ? {
+  $auto_x_detect       = $facts['os']['family'] ? {
     'RedHat' => true,
     default  => false,
   }
   $whitelisted_is_white = false
-  $allow_ssh_root_user = $::osfamily ? {
+  $allow_ssh_root_user = $facts['os']['family'] ? {
     'RedHat' => 'unset',
     default  => 'no',
   }
@@ -46,7 +46,7 @@ class rkhunter::params {
   $use_locking         = false
   $lock_timeout        = '300'
   $show_lockmsgs       = true
-  $disable_unhide      = $::osfamily ? {
+  $disable_unhide      = $facts['os']['family'] ? {
     'RedHat' => undef,
     default  => '1',
   }
@@ -54,14 +54,14 @@ class rkhunter::params {
   $ssh_config_dir      = undef  #"/etc/ssh"
   $hash_cmd            = undef  #"sha1sum"
   $hash_fld_idx        = undef  #"4"
-  $package_manager     = $::osfamily ? {
+  $package_manager     = $facts['os']['family'] ? {
     'RedHat' => 'RPM',
     default  => undef,  #"NONE"
   }
   $pkgmgr_no_verfy     = []     #['/etc/fooconfig1 /etc/barconfig2', '/etc/foobarconfig']
   $ignore_prelink_dep_err = []  #['/bin/ps /usr/bin/top', '/bin/foobin']
   $use_sunsum          = undef  #"0"
-  $existwhitelist      = $::osfamily ? {
+  $existwhitelist      = $facts['os']['family'] ? {
     'RedHat' => [
       '/var/log/pki-ca/system',
       '/var/log/pki/pki-tomcat/ca/system', # FreeIPA Certificate Authority
@@ -81,7 +81,7 @@ class rkhunter::params {
   $startup_paths       = []     #['/etc/init.d /etc/rc.local']
   $passwd_file         = undef  #"/etc/shadow"
   $user_fileprop_files_dirs = [] #['top /usr/local/sbin !/opt/ps*', '/etc/rkhunter.conf']
-  $rtkt_file_whitelist = $::osfamily ? {
+  $rtkt_file_whitelist = $facts['os']['family'] ? {
     'RedHat' => [
       '/var/log/pki-ca/system',            # FreeIPA Certificate Authority
       '/var/log/pki/pki-tomcat/ca/system',
@@ -104,7 +104,7 @@ class rkhunter::params {
   $empty_logfiles      = undef
   $missing_logfiles    = undef
 
-  $scriptwhitelist     = $::osfamily ? {
+  $scriptwhitelist     = $facts['os']['family'] ? {
     'RedHat' => [
       '/usr/bin/whatis',
       '/usr/bin/ldd',
@@ -125,7 +125,7 @@ class rkhunter::params {
     ],
   }
   $immutewhitelist = []
-  $allowhiddendir = $::osfamily ? {
+  $allowhiddendir = $facts['os']['family'] ? {
     'RedHat' => [
       '/etc/.java',
       '/dev/.udev',
@@ -154,7 +154,7 @@ class rkhunter::params {
 #      '/etc/.etckeeper',
     ],
   }
-  $allowhiddenfile = $::osfamily ? {
+  $allowhiddenfile = $facts['os']['family'] ? {
   'RedHat' => [
     '/usr/share/man/man1/..1.gz',
     '/lib*/.libcrypto.so.*.hmac',
@@ -222,7 +222,7 @@ class rkhunter::params {
   $allowpromiscif = [
 #      'eth0',
   ]
-  $allowdevfile = $::osfamily ? {
+  $allowdevfile = $facts['os']['family'] ? {
     'RedHat' => [
       '/dev/shm/pulse-shm-*',
       '/dev/md/md-device-map',
@@ -284,7 +284,7 @@ class rkhunter::params {
 
 
 
-  case $::osfamily {
+  case $facts['os']['family'] {
     'Debian': {
       $package_name = 'rkhunter'
     }
