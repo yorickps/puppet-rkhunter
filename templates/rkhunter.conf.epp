@@ -143,8 +143,9 @@ MIRRORS_MODE=<%= $mode %>
 # Also see the MAIL_CMD option.
 #
 #MAIL-ON-WARNING=me@mydomain   root@mydomain
+<% if $rkhunter::mail_on_warning {-%>
 MAIL-ON-WARNING=<%= $rkhunter::mail_on_warning %>
-
+<% } -%>
 #
 # This option specifies the mail command to use if MAIL-ON-WARNING is set.
 #
