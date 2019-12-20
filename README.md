@@ -1,58 +1,61 @@
-puppet-rkhunter
-===============
+# puppet-rkhunter
 
 [![Build Status](https://travis-ci.org/mmz-srf/puppet-rkhunter.png?branch=master)](https://travis-ci.org/mmz-srf/puppet-rkhunter)
 
 Manage rkhunter installation and configuration with Puppet.
 
 ## Features
+
 - Manage ALL config entries (some of them dont make sense in server environments)
 - Manage your whitelists
 - The check cronjob is called staggered (predefined timewindow)
 - The db update cronjob is configured separately
 
 ## Supported OS
+
 - Debian ( tested on Debian 7.5, 8.1)
 - Redhat/CentOS ( tested on CentOS 6.8 and 7.3)
 - FreeBSD (NOT tested yet)
 
 ## Used Modules
-No external modules are used in this module. 
+
+No external modules are used in this module.
 
 ## Configuration
 
-See `templates/etc/rkhunter.conf.erb` for detailed explanation of the rkhunter config options.
-Important: full possible configuration is visible in params.pp. Do not uncomment them in params.pp.
+See `templates/etc/rkhunter.conf.erb` for detailed explanation of the rkhunter
+config options. Important: full possible configuration is visible in params.pp.
+Do not uncomment them in params.pp.
 
 ### Minimal configuration
-```
-class yourclass{
-  include ::rkhunter
-  class {'rkhunter::cron':}
-}
+
+```puppet
+  include rkhunter
+  include rkhunter::cron
 ```
 
 ### A bit bigger configuration
-```
-class yourclass{
-  class { 'rkhunter':
-    allow_ssh_root_user         => 'yes',
-    shared_lib_whitelist        => [ '/lib/snoopy.so' ],
-    allow_syslog_remote_logging => "1",
-    scriptwhitelist             => [
-      '/bin/egrep',
-      '/bin/fgrep',
-      '/bin/which',
-      '/usr/bin/groups',
-      '/usr/bin/ldd',
-      '/usr/bin/lwp-request',
-      '/usr/sbin/adduser',
-    ],
-  }
-  class {'rkhunter::cron':}
+
+```puppet
+class { 'rkhunter':
+  allow_ssh_root_user         => 'yes',
+  shared_lib_whitelist        => [ '/lib/snoopy.so' ],
+  allow_syslog_remote_logging => "1",
+  scriptwhitelist             => [
+    '/bin/egrep',
+    '/bin/fgrep',
+    '/bin/which',
+    '/usr/bin/groups',
+    '/usr/bin/ldd',
+    '/usr/bin/lwp-request',
+    '/usr/sbin/adduser',
+  ],
 }
+include rkhunter::cron
 ```
+
 ### List of optional configuration paramaeters
+
 NOTE: there may be more. I do not update this list every time. Have a look into params.pp
 
 ```

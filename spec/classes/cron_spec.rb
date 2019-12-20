@@ -1,14 +1,13 @@
 require 'spec_helper'
 
-
-describe 'rkhunter::cron', :type => :class do
+describe 'rkhunter::cron', type: :class do
   on_supported_os.each do |os, facts|
     context "on #{os}" do
-      let(:facts){facts}
+      let(:facts) { facts }
 
       it do
-        should contain_cron('rkhunter-cron').with(
-          'user'  => 'root',
+        is_expected.to contain_cron('rkhunter-cron').with(
+          'user' => 'root'
         )
       end
     end
