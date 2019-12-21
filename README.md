@@ -1,6 +1,10 @@
 # puppet-rkhunter
 
-[![Build Status](https://travis-ci.org/mmz-srf/puppet-rkhunter.png?branch=master)](https://travis-ci.org/mmz-srf/puppet-rkhunter)
+[![Build Status](https://travis-ci.org/voxpupuli/puppet-rkhunter.png?branch=master)](https://travis-ci.org/voxpupuli/puppet-rkhunter)
+[![Puppet Forge](https://img.shields.io/puppetforge/v/puppet/rkhunter.svg)](https://forge.puppetlabs.com/puppet/rkhunter)
+[![Puppet Forge - downloads](https://img.shields.io/puppetforge/dt/puppet/rkhunter.svg)](https://forge.puppetlabs.com/puppet/rkhunter)
+[![Puppet Forge - endorsement](https://img.shields.io/puppetforge/e/puppet/rkhunter.svg)](https://forge.puppetlabs.com/puppet/rkhunter)
+[![Puppet Forge - scores](https://img.shields.io/puppetforge/f/puppet/rkhunter.svg)](https://forge.puppetlabs.com/puppet/rkhunter)
 
 Manage rkhunter installation and configuration with Puppet.
 
@@ -19,7 +23,8 @@ Manage rkhunter installation and configuration with Puppet.
 
 ## Used Modules
 
-No external modules are used in this module.
+Other than some data types from [puppetlabs/stdlib](https://forge.puppet.com/puppetlabs/stdlib),
+no other external modules are used.
 
 ## Configuration
 
@@ -125,3 +130,13 @@ NOTE: there may be more. I do not update this list every time. Have a look into 
   port_whitelist
   shared_lib_whitelist
 ```
+
+## License
+
+This project is licensed under the Apache-2 license
+
+## copyright and origin
+
+This repository was forked from
+[github.com//mmz-srf/puppet-rkhunter](https://github.com/mmz-srf/puppet-rkhunter)
+and is now maintained in the Vox Pupuli community.
