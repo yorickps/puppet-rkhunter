@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v2.1.0](https://github.com/voxpupuli/puppet-rkhunter/tree/v2.1.0) (2020-04-29)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-rkhunter/compare/v2.0.0...v2.1.0)
+
+**Implemented enhancements:**
+
+- Add `language` and `update_lang` parameters [\#9](https://github.com/voxpupuli/puppet-rkhunter/pull/9) ([alexjfisher](https://github.com/alexjfisher))
+
 ## [v2.0.0](https://github.com/voxpupuli/puppet-rkhunter/tree/v2.0.0) (2019-12-21)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-rkhunter/compare/v1.0.1...v2.0.0)
