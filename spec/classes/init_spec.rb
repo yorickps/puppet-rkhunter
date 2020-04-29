@@ -19,6 +19,37 @@ describe 'rkhunter', type: :class do
       it { is_expected.to contain_package('rkhunter').with('ensure' => 'installed') }
       it { is_expected.to contain_exec('/usr/bin/rkhunter --propupd') }
       it { is_expected.to contain_file_line('Remove local mirror from mirrors.dat') }
+
+      describe 'language' do
+        context 'by default' do
+          it do
+            is_expected.to contain_file('/etc/rkhunter.conf').without_content(%r{^LANGUAGE})
+          end
+        end
+        context 'when set' do
+          let(:params) { { language: 'de' } }
+
+          it do
+            is_expected.to contain_file('/etc/rkhunter.conf').with_content(%r{^LANGUAGE=de$})
+          end
+        end
+      end
+
+      describe 'update_lang' do
+        context 'by default' do
+          it do
+            is_expected.to contain_file('/etc/rkhunter.conf').without_content(%r{^UPDATE_LANG=})
+          end
+        end
+
+        context 'when set' do
+          let(:params) { { update_lang: %w[en de] } }
+
+          it do
+            is_expected.to contain_file('/etc/rkhunter.conf').with_content(%r{^UPDATE_LANG="en de"$})
+          end
+        end
+      end
     end
   end
 end

@@ -223,6 +223,9 @@ BINDIR=<%= $rkhunter::bindir %>
 # The default language is 'en' (English).
 #
 #LANGUAGE=en
+<% if $rkhunter::language {-%>
+LANGUAGE=<%= $rkhunter::language %>
+<% } -%>
 
 #
 # This option is a space-separated list of the languages that are to be updated
@@ -239,6 +242,9 @@ BINDIR=<%= $rkhunter::bindir %>
 # will be updated.
 #
 #UPDATE_LANG=""
+<% unless $rkhunter::update_lang.empty {-%>
+UPDATE_LANG="<%= $rkhunter::update_lang.join(' ') %>"
+<% } -%>
 
 #
 # This option specifies the log file pathname. The file will be created if it

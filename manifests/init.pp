@@ -85,6 +85,8 @@ class rkhunter  (
   Optional[String[1]] $missing_logfiles               = undef,
   String[1] $package_name                             = 'rkhunter',
   Optional[Stdlib::HTTPUrl] $local_mirror             = undef,
+  Optional[Rkhunter::Language] $language              = undef,
+  Array[Rkhunter::Language] $update_lang              = [],
 ) inherits ::rkhunter::params {
 
   contain rkhunter::packages
