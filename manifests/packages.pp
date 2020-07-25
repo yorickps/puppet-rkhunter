@@ -5,10 +5,9 @@
 #
 # @param package_name name of the rkhunter package that will be installed
 #
-class rkhunter::packages(
+class rkhunter::packages (
   $package_name = $rkhunter::package_name,
 ) {
-
   assert_private()
 
   package { 'rkhunter':

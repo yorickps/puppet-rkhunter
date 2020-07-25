@@ -1,4 +1,4 @@
-class rkhunter  (
+class rkhunter (
   Boolean $rotate_mirrors                             = true,
   Boolean $update_mirrors                             = true,
   Enum['any','local','remote'] $mirrors_mode          = 'any',
@@ -25,7 +25,7 @@ class rkhunter  (
   String[1] $suspscan_maxsize                         = '10240000',
   String[1] $suspscan_thresh                          = '200',
   Boolean $use_locking                                = false,
-  String[1]$lock_timeout                              = '300',
+  String[1] $lock_timeout                              = '300',
   Boolean $show_lockmsgs                              = true,
   Optional[Enum['0','1','2']] $disable_unhide         = $rkhunter::params::disable_unhide,
   Stdlib::Absolutepath $installdir                    = '/usr',
@@ -88,7 +88,6 @@ class rkhunter  (
   Optional[Rkhunter::Language] $language              = undef,
   Array[Rkhunter::Language] $update_lang              = [],
 ) inherits ::rkhunter::params {
-
   contain rkhunter::packages
 
   $mirrors_file = '/var/lib/rkhunter/db/mirrors.dat'

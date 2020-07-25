@@ -1,9 +1,8 @@
-class rkhunter::cron_updatedb(
+class rkhunter::cron_updatedb (
   $hour           = '2',
   $weekday        = '1',
   $email          = 'root@localhost',
 ) {
-
   $cron_cmd = 'rkhunter --cronjob --syslog --update'
 
   cron { 'rkhunter-cron-update':
@@ -13,7 +12,6 @@ class rkhunter::cron_updatedb(
     hour        => $hour,
     minute      => fqdn_rand(59),
     weekday     => $weekday,
-    environment => [ 'PATH=/sbin:/usr/sbin:/usr/local/sbin:/bin:/usr/bin:/usr/local/bin', "MAILTO=${email}" ],
+    environment => ['PATH=/sbin:/usr/sbin:/usr/local/sbin:/bin:/usr/bin:/usr/local/bin', "MAILTO=${email}"],
   }
-
 }
