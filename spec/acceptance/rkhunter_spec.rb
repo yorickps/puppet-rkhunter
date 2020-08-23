@@ -23,7 +23,8 @@ describe 'rkhunter class' do
       it { is_expected.to be_installed }
     end
   end
-  context 'with custom parameters' do
+  # unhide isn't available in CentOS 8
+  context 'with custom parameters', if: fact('os.release.major').to_i < 8 do
     it 'works idempotently with no errors' do
       pp = <<-EOS
       package { 'unhide':

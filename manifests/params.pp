@@ -48,25 +48,38 @@ class rkhunter::params {
     default  => [],
   }
 
-  $scriptwhitelist     = $facts['os']['family'] ? {
-    'RedHat' => [
-      '/usr/bin/whatis',
-      '/usr/bin/ldd',
-      '/usr/bin/groups',
-      '/usr/bin/GET',
-      '/sbin/ifup',
-      '/sbin/ifdown',
-    ],
-    default  => [
-      '/bin/egrep',
-      '/bin/fgrep',
-      '/bin/which',
-      '/usr/bin/groups',
-      '/usr/bin/ldd',
-      '/usr/bin/lwp-request',
-      '/usr/sbin/adduser',
-      '/usr/sbin/prelink',
-    ],
+  case $facts['os']['family'] {
+    'RedHat': {
+      if Integer($facts['os']['release']['major']) < 8 {
+        $scriptwhitelist = [
+          '/usr/bin/whatis',
+          '/usr/bin/ldd',
+          '/usr/bin/groups',
+          '/usr/bin/GET',
+          '/sbin/ifup',
+          '/sbin/ifdown',
+        ]
+      } else {
+        $scriptwhitelist = [
+          '/usr/bin/whatis',
+          '/usr/bin/ldd',
+          '/usr/bin/groups',
+          '/usr/bin/GET',
+        ]
+      }
+    }
+    default: {
+      $scriptwhitelist = [
+        '/bin/egrep',
+        '/bin/fgrep',
+        '/bin/which',
+        '/usr/bin/groups',
+        '/usr/bin/ldd',
+        '/usr/bin/lwp-request',
+        '/usr/sbin/adduser',
+        '/usr/sbin/prelink',
+      ]
+    }
   }
   $allowhiddendir = $facts['os']['family'] ? {
     'RedHat' => [
