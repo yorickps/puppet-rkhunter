@@ -17,8 +17,8 @@ Manage rkhunter installation and configuration with Puppet.
 
 ## Supported OS
 
-- Debian ( tested on Debian 7.5, 8.1)
-- Redhat/CentOS ( tested on CentOS 6.8 and 7.3)
+- Debian (tested on Debian 7.5, 8.1)
+- Redhat/CentOS (tested on CentOS 6, 7 and 8)
 - FreeBSD (NOT tested yet)
 
 ## Used Modules
