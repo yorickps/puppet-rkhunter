@@ -1,5 +1,4 @@
 class rkhunter::mcollective_plugin {
-
   $mcollecgtive_plugindir = $facts['os']['family'] ? {
     'Debian' => '/usr/share/mcollective/plugins',
     default  => '/usr/libexec/mcollective',
@@ -16,5 +15,4 @@ class rkhunter::mcollective_plugin {
     mode   => '0754',
     source => 'puppet:///modules/rkhunter/mcollective-agent/rkhunter.ddl',
   }
-
 }

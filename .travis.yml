@@ -1,5 +1,6 @@
 ---
-dist: bionic
+os: linux
+dist: focal
 language: ruby
 cache: bundler
 before_install:
@@ -7,7 +8,7 @@ before_install:
   - bundle --version
 script:
   - 'bundle exec rake $CHECK'
-matrix:
+jobs:
   fast_finish: true
   include:
   - rvm: 2.4.4
@@ -24,19 +25,19 @@ matrix:
     env: PUPPET_VERSION="~> 5.0" CHECK=build DEPLOY_TO_FORGE=yes
   - rvm: 2.5.3
     bundler_args: --without development release
-    env: PUPPET_INSTALL_TYPE=agent BEAKER_PUPPET_COLLECTION=puppet5 BEAKER_debug=true BEAKER_setfile=centos7-64 BEAKER_HYPERVISOR=docker CHECK=beaker
+    env: BEAKER_PUPPET_COLLECTION=puppet5 BEAKER_setfile=centos7-64 CHECK=beaker
     services: docker
   - rvm: 2.5.3
     bundler_args: --without development release
-    env: PUPPET_INSTALL_TYPE=agent BEAKER_PUPPET_COLLECTION=puppet6 BEAKER_debug=true BEAKER_setfile=centos7-64 BEAKER_HYPERVISOR=docker CHECK=beaker
+    env: BEAKER_PUPPET_COLLECTION=puppet6 BEAKER_setfile=centos7-64 CHECK=beaker
     services: docker
   - rvm: 2.5.3
     bundler_args: --without development release
-    env: PUPPET_INSTALL_TYPE=agent BEAKER_PUPPET_COLLECTION=puppet5 BEAKER_debug=true BEAKER_setfile=centos6-64 BEAKER_HYPERVISOR=docker CHECK=beaker
+    env: BEAKER_PUPPET_COLLECTION=puppet5 BEAKER_setfile=centos6-64 CHECK=beaker
     services: docker
   - rvm: 2.5.3
     bundler_args: --without development release
-    env: PUPPET_INSTALL_TYPE=agent BEAKER_PUPPET_COLLECTION=puppet6 BEAKER_debug=true BEAKER_setfile=centos6-64 BEAKER_HYPERVISOR=docker CHECK=beaker
+    env: BEAKER_PUPPET_COLLECTION=puppet6 BEAKER_setfile=centos6-64 CHECK=beaker
     services: docker
 branches:
   only:
@@ -52,7 +53,7 @@ notifications:
       - "chat.freenode.org#voxpupuli-notifications"
 deploy:
   provider: puppetforge
-  user: puppet
+  username: puppet
   password:
     secure: "lofLQkKl5ubHSolZwHJcNW8H12tL5W8X43vV6xwfQjuW+X33KLPqJUrXad9SJoXqscvtUQztjczbyrwTeN1QeNV4R4nVOQ9dbPUS1TAM7LgWAWoEhP2M5IrgbUusJbXwZxC6CL59wesK2uw+geFQimolU6jixNgRp938rBhcheqPjqtw9fLiOM3n5qE7yZej0ZyeUfn8HQ5i5epmqYGcUTAF0WDMrGST86c7ETtovZ38X30e4oQcHheOOYwpuYq9keJgAcG9OlFbd0dckfTmzjo/lxVkftNLFlvtHslO5VGMSI9tWukMdVdArNcyPInN9IujeI7vKkutKV9zqcjkaEmRUzKuBKv0SYT/Yx9qrUGp4dGzXbzgkmv2LXVBGrscq3xnS4hiJRIy++6l3xutlmThgqAWuujhu6vYYrxf7yhOY1WQWyTU7i+i7GZ39pd5h7VTls0FcFiJnRtiuTb2okHuAhCG/HsDVxb8ZfJPlc9tz73nOl9mCKgAyqjMhtEb52rQzoQHcjSJIKJN3ikAkrdYiXC6DS/PKiaCTShfnWvpSDoMqCfarR2A3zVHePsxooOLKcNCsVVuVKxrPliN25Z/EMYK8sRxtfsd4pI5S4PVIEobFI3nrC4WoN6w3hakv+mx2xCOPxLJhPCj3STyN0d7D9raQCIvPM9mZR3B2m0="
   on:

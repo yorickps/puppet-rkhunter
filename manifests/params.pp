@@ -1,5 +1,4 @@
 class rkhunter::params {
-
   $tmpdir              = $facts['os']['family'] ? {
     'RedHat' => '/var/lib/rkhunter',
     default  => '/var/lib/rkhunter/tmp',
@@ -41,7 +40,7 @@ class rkhunter::params {
     ],
     default  => [],             #['/path/one /path/bar', '/path/foobar*']
   }
-    $rtkt_file_whitelist = $facts['os']['family'] ? {
+  $rtkt_file_whitelist = $facts['os']['family'] ? {
     'RedHat' => [
       '/var/log/pki-ca/system',            # FreeIPA Certificate Authority
       '/var/log/pki/pki-tomcat/ca/system',
@@ -99,37 +98,37 @@ class rkhunter::params {
     ],
   }
   $allowhiddenfile = $facts['os']['family'] ? {
-  'RedHat' => [
-    '/usr/share/man/man1/..1.gz',
-    '/lib*/.libcrypto.so.*.hmac',
-    '/lib*/.libssl.so.*.hmac',
-    '/usr/bin/.fipscheck.hmac',
-    '/usr/bin/.ssh.hmac',
-    '/usr/bin/.ssh-keygen.hmac',
-    '/usr/bin/.ssh-keyscan.hmac',
-    '/usr/bin/.ssh-add.hmac',
-    '/usr/bin/.ssh-agent.hmac',
-    '/usr/lib*/.libfipscheck.so.*.hmac',
-    '/usr/lib*/.libgcrypt.so.*.hmac',
-    '/usr/lib*/hmaccalc/sha1hmac.hmac',
-    '/usr/lib*/hmaccalc/sha256hmac.hmac',
-    '/usr/lib*/hmaccalc/sha384hmac.hmac',
-    '/usr/lib*/hmaccalc/sha512hmac.hmac',
-    '/usr/sbin/.sshd.hmac',
-    '/dev/.mdadm.map',
-    '/dev/.udev/queue.bin',
-    '/usr/share/man/man5/.k5login.5.gz',
-    '/usr/share/man/man5/.k5identity.5.gz',
-    '/usr/sbin/.ipsec.hmac',
-    '/sbin/.cryptsetup.hmac',
-    # etckeeper
-    '/etc/.etckeeper',
-    '/etc/.gitignore',
-    '/etc/.bzrignore',
+    'RedHat' => [
+      '/usr/share/man/man1/..1.gz',
+      '/lib*/.libcrypto.so.*.hmac',
+      '/lib*/.libssl.so.*.hmac',
+      '/usr/bin/.fipscheck.hmac',
+      '/usr/bin/.ssh.hmac',
+      '/usr/bin/.ssh-keygen.hmac',
+      '/usr/bin/.ssh-keyscan.hmac',
+      '/usr/bin/.ssh-add.hmac',
+      '/usr/bin/.ssh-agent.hmac',
+      '/usr/lib*/.libfipscheck.so.*.hmac',
+      '/usr/lib*/.libgcrypt.so.*.hmac',
+      '/usr/lib*/hmaccalc/sha1hmac.hmac',
+      '/usr/lib*/hmaccalc/sha256hmac.hmac',
+      '/usr/lib*/hmaccalc/sha384hmac.hmac',
+      '/usr/lib*/hmaccalc/sha512hmac.hmac',
+      '/usr/sbin/.sshd.hmac',
+      '/dev/.mdadm.map',
+      '/dev/.udev/queue.bin',
+      '/usr/share/man/man5/.k5login.5.gz',
+      '/usr/share/man/man5/.k5identity.5.gz',
+      '/usr/sbin/.ipsec.hmac',
+      '/sbin/.cryptsetup.hmac',
+      # etckeeper
+      '/etc/.etckeeper',
+      '/etc/.gitignore',
+      '/etc/.bzrignore',
 # systemd
-    '/etc/.updated',
-  ],
-  default  => [
+      '/etc/.updated',
+    ],
+    default  => [
 #      '/etc/.java',
 #      '/usr/share/man/man1/..1.gz',
 #      '/etc/.pwd.lock',
