@@ -87,7 +87,7 @@ class rkhunter (
   Optional[Stdlib::HTTPUrl] $local_mirror             = undef,
   Optional[Rkhunter::Language] $language              = undef,
   Array[Rkhunter::Language] $update_lang              = [],
-) inherits ::rkhunter::params {
+) inherits rkhunter::params {
   contain rkhunter::packages
 
   $mirrors_file = '/var/lib/rkhunter/db/mirrors.dat'
