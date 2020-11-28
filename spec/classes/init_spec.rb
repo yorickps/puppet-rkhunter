@@ -20,6 +20,71 @@ describe 'rkhunter', type: :class do
       it { is_expected.to contain_exec('/usr/bin/rkhunter --propupd') }
       it { is_expected.to contain_file_line('Remove local mirror from mirrors.dat') }
 
+      describe 'variant data type variables' do
+        context 'by default' do
+          it { is_expected.to contain_file('/etc/rkhunter.conf').with_content(%r{^ALLOW_SSH_PROT_V1=0}) }
+          it { is_expected.to contain_file('/etc/rkhunter.conf').with_content(%r{^IMMUTABLE_SET=0}) }
+          it { is_expected.to contain_file('/etc/rkhunter.conf').with_content(%r{^SUSPSCAN_MAXSIZE=10240000}) }
+          it { is_expected.to contain_file('/etc/rkhunter.conf').with_content(%r{^SUSPSCAN_THRESH=200}) }
+          it { is_expected.to contain_file('/etc/rkhunter.conf').with_content(%r{^LOCK_TIMEOUT=300}) }
+          if facts[:os]['family'] == 'RedHat'
+            it { is_expected.to contain_file('/etc/rkhunter.conf').without_content(%r{^DISABLE_UNHIDE}) }
+          else
+            it { is_expected.to contain_file('/etc/rkhunter.conf').with_content(%r{^DISABLE_UNHIDE=1}) }
+          end
+        end
+
+        context 'when set with a string' do
+          let(:params) do
+            {
+              allow_ssh_prot_v1: '2',
+              immutable_set: '1',
+              suspscan_maxsize: '123',
+              suspscan_thresh: '234',
+              lock_timeout: '345',
+              disable_unhide: '1',
+            }
+          end
+
+          it { is_expected.to contain_file('/etc/rkhunter.conf').with_content(%r{^ALLOW_SSH_PROT_V1=2}) }
+          it { is_expected.to contain_file('/etc/rkhunter.conf').with_content(%r{^IMMUTABLE_SET=1}) }
+          it { is_expected.to contain_file('/etc/rkhunter.conf').with_content(%r{^SUSPSCAN_MAXSIZE=123}) }
+          it { is_expected.to contain_file('/etc/rkhunter.conf').with_content(%r{^SUSPSCAN_THRESH=234}) }
+          it { is_expected.to contain_file('/etc/rkhunter.conf').with_content(%r{^LOCK_TIMEOUT=345}) }
+          it { is_expected.to contain_file('/etc/rkhunter.conf').with_content(%r{^DISABLE_UNHIDE=1}) }
+        end
+
+        context 'when set with an integer' do
+          let(:params) do
+            {
+              allow_ssh_prot_v1: 2,
+              immutable_set: 1,
+              suspscan_maxsize: 123,
+              suspscan_thresh: 234,
+              lock_timeout: 345,
+              disable_unhide: 2,
+            }
+          end
+
+          it { is_expected.to contain_file('/etc/rkhunter.conf').with_content(%r{^ALLOW_SSH_PROT_V1=2}) }
+          it { is_expected.to contain_file('/etc/rkhunter.conf').with_content(%r{^IMMUTABLE_SET=1}) }
+          it { is_expected.to contain_file('/etc/rkhunter.conf').with_content(%r{^SUSPSCAN_MAXSIZE=123}) }
+          it { is_expected.to contain_file('/etc/rkhunter.conf').with_content(%r{^SUSPSCAN_THRESH=234}) }
+          it { is_expected.to contain_file('/etc/rkhunter.conf').with_content(%r{^LOCK_TIMEOUT=345}) }
+          it { is_expected.to contain_file('/etc/rkhunter.conf').with_content(%r{^DISABLE_UNHIDE=2}) }
+        end
+
+        context 'when set with a Boolean' do
+          let(:params) do
+            {
+              immutable_set: true,
+            }
+          end
+
+          it { is_expected.to contain_file('/etc/rkhunter.conf').with_content(%r{^IMMUTABLE_SET=1}) }
+        end
+      end
+
       describe 'language' do
         context 'by default' do
           it do
