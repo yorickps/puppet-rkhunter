@@ -667,7 +667,10 @@ IMMUTWHITELIST=<%= $whitelist %>
 # The default value is '0'.
 #
 #IMMUTABLE_SET=0
-IMMUTABLE_SET=<%= $rkhunter::immutable_set %>
+IMMUTABLE_SET=<%= $rkhunter::immutable_set ? {
+  Boolean => $rkhunter::immutable_set.bool2num,
+  default => $rkhunter::immutable_set,
+} %>
 
 #
 # Allow the specified hidden directory to be whitelisted.

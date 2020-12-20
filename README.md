@@ -17,7 +17,7 @@ Manage rkhunter installation and configuration with Puppet.
 
 ## Supported OS
 
-- Debian (tested on Debian 7.5, 8.1)
+- Debian (tested on Debian 7.5, 8.1, 10)
 - Redhat/CentOS (tested on CentOS 6, 7 and 8)
 - FreeBSD (NOT tested yet)
 
@@ -135,8 +135,7 @@ NOTE: there may be more. I do not update this list every time. Have a look into 
 
 This project is licensed under the Apache-2 license
 
-## copyright and origin
+## Copyright and origin
 
-This repository was forked from
-[github.com//mmz-srf/puppet-rkhunter](https://github.com/mmz-srf/puppet-rkhunter)
-and is now maintained in the Vox Pupuli community.
+This repository was forked from https://github.com/mmz-srf/puppet-rkhunter and is now maintained
+by the Vox Pupuli community.
