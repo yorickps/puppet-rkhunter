@@ -4,6 +4,26 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v3.0.0](https://github.com/voxpupuli/puppet-rkhunter/tree/v3.0.0) (2024-02-03)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-rkhunter/compare/v2.2.0...v3.0.0)
+
+**Breaking changes:**
+
+- Drop Debian 9 [\#26](https://github.com/voxpupuli/puppet-rkhunter/pull/26) ([zilchms](https://github.com/zilchms))
+- Drop Puppet 6 support [\#23](https://github.com/voxpupuli/puppet-rkhunter/pull/23) ([bastelfreak](https://github.com/bastelfreak))
+- Metadata updates; Drop Debian 7 support; Drop CentOS 5/6 support [\#17](https://github.com/voxpupuli/puppet-rkhunter/pull/17) ([kenyon](https://github.com/kenyon))
+
+**Implemented enhancements:**
+
+- Add Puppet 8 support [\#25](https://github.com/voxpupuli/puppet-rkhunter/pull/25) ([bastelfreak](https://github.com/bastelfreak))
+- puppetlabs/stdlib: Allow 9.x [\#24](https://github.com/voxpupuli/puppet-rkhunter/pull/24) ([bastelfreak](https://github.com/bastelfreak))
+- Type improvements: allow Boolean and Integer in addition to String where applicable [\#16](https://github.com/voxpupuli/puppet-rkhunter/pull/16) ([kenyon](https://github.com/kenyon))
+
+**Merged pull requests:**
+
+- Allow stdlib 8.0.0 [\#18](https://github.com/voxpupuli/puppet-rkhunter/pull/18) ([smortex](https://github.com/smortex))
+
 ## [v2.2.0](https://github.com/voxpupuli/puppet-rkhunter/tree/v2.2.0) (2020-08-23)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-rkhunter/compare/v2.1.0...v2.2.0)
